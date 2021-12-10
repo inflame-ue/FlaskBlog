@@ -19,7 +19,7 @@ import os
 # app setup
 app = Flask(__name__)
 load_dotenv("C:/EnvironmentalVariables/.env")
-app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
@@ -53,7 +53,7 @@ class MySQLAlchemy(SQLAlchemy):
     ForeignKey: Callable
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = MySQLAlchemy(app)
 
