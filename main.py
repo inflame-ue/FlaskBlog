@@ -13,11 +13,13 @@ from flask_gravatar import Gravatar
 from typing import Callable
 from functools import wraps
 from html_inspector import strip_invalid_html
+from dotenv import load_dotenv
 import os
 
 # app setup
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+load_dotenv(".env")
+app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
